@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Decrescente para o Fim do PIS/COFINS</title>
+    <!-- Tailwind CSS para um design moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0f14;
+        }
+
+        .digital-font {
+            font-family: 'Share Tech Mono', monospace;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+        }
+
+        /* Animação de pulsar leve */
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .pulse-text {
+            animation: pulse-soft 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col justify-between selection:bg-red-500 selection:text-white">
+
+    <!-- Cabeçalho / Banner Principal -->
+    <header class="container mx-auto px-4 pt-8 pb-4 text-center">
+        <div class="inline-block bg-red-950/40 border border-red-800 text-red-400 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-4 pulse-text">
+            ⚠️ Alerta Geral para Gabinetes de Contabilidade
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 bg-clip-text text-transparent">
+            O Último Adeus ao PIS e COFINS
+        </h1>
+        <p class="text-gray-400 mt-3 text-sm md:text-lg max-w-2xl mx-auto">
+            A contagem decrescente definitiva para a extinção dos maiores geradores de dores de cabeça da história tributária.
+        </p>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto px-4 py-4 flex-grow flex flex-col items-center justify-center gap-8">
+        
+        <!-- Bloco do Temporizador -->
+        <div class="w-full max-w-4xl bg-gray-900/60 border border-gray-800 rounded-3xl p-6 md:p-10 neon-border backdrop-blur-md text-center">
+            <h2 class="text-xs uppercase tracking-widest text-gray-400 mb-6 font-semibold">Tempo restante para a extinção oficial</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
+                <!-- Dias -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="days" class="block text-4xl md:text-6xl font-bold text-red-500 digital-font">00</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Dias</span>
+                </div>
+                <!-- Horas -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="hours" class="block text-4xl md:text-6xl font-bold text-red-400 digital-font">00</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Horas</span>
+                </div>
+                <!-- Minutos -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="minutes" class="block text-4xl md:text-6xl font-bold text-orange-400 digital-font">00</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Minutos</span>
+                </div>
+                <!-- Segundos -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="seconds" class="block text-4xl md:text-6xl font-bold text-yellow-500 digital-font">00</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Segundos</span>
+                </div>
+            </div>
+
+            <!-- Ticker de Status Cómico -->
+            <div class="bg-gray-950/40 border border-gray-800/50 rounded-xl p-4 min-h-[64px] flex items-center justify-center">
+                <p id="status-ticker" class="text-sm md:text-base text-gray-300 italic font-medium transition-opacity duration-500">
+                    A carregar previsões caóticas...
+                </p>
+            </div>
+        </div>
+
+        <!-- Seção de Interação (Simulador & Botão de Pânico) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+            
+            <!-- Simulador de Pânico Contábil -->
+            <div class="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-200 mb-2">Simulador de Desespero Fiscal</h3>
+                    <p class="text-xs text-gray-400 mb-4">Insira o valor de uma fatura para estimar o pânico do seu contabilista.</p>
+                    
+                    <div class="relative rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="text-gray-500 sm:text-sm">R$</span>
+                        </div>
+                        <input type="number" id="invoice-value" class="block w-full rounded-xl border border-gray-800 bg-gray-950 py-3 pl-10 pr-3 text-gray-200 placeholder-gray-600 focus:border-red-500 focus:ring-red-500 sm:text-sm" placeholder="10.000,00">
+                    </div>
+                </div>
+                
+                <div class="mt-4 pt-4 border-t border-gray-800/60">
+                    <button onclick="calculatePanic()" class="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-white font-semibold py-2.5 px-4 rounded-xl transition duration-200 text-sm">
+                        Calcular Complexidade
+                    </button>
+                    <div id="sim-result" class="mt-3 text-xs text-orange-400 italic text-center min-h-[16px]"></div>
+                </div>
+            </div>
+
+            <!-- Botão de Pânico / Gerador de Barulho -->
+            <div class="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between text-center">
+                <div>
+                    <h3 class="text-lg font-bold text-red-400 mb-2">🚨 Botão de Emergência</h3>
+                    <p class="text-xs text-gray-400 mb-4">Pressione em caso de auditoria imediata ou tonturas ao ler o Diário da República.</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center my-4">
+                    <button onclick="triggerPanic()" id="panic-btn" class="h-20 w-20 bg-red-600 hover:bg-red-500 active:scale-95 text-white font-black rounded-full shadow-lg shadow-red-900/40 border-4 border-red-800 flex items-center justify-center transition-all duration-150 text-xl tracking-wider select-none">
+                        SOS
+                    </button>
+                </div>
+                <p class="text-[10px] text-gray-500">Garante som ativo para escutar o lamento do sistema tributário.</p>
+            </div>
+            
+        </div>
+
+        <!-- Obituário Breve -->
+        <section class="w-full max-w-4xl bg-gray-900/20 border border-gray-800/50 rounded-2xl p-6 text-sm text-gray-400">
+            <h3 class="text-xs uppercase tracking-wider text-gray-300 font-bold mb-3">⚰️ Resumo das Vítimas</h3>
+            <ul class="space-y-2">
+                <li><strong class="text-gray-300">PIS:</strong> Nascido em 1970. Deixa saudades apenas a quem gostava de preencher declarações acessórias infinitas.</li>
+                <li><strong class="text-gray-300">COFINS:</strong> Nascida em 1991. Falece com a reputação de ser uma das taxas mais cumulativas e incompreendidas do hemisfério sul.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-950/80 border-t border-gray-900 py-6 text-center text-xs text-gray-500">
+        <div class="container mx-auto px-4">
+            <p>Este cronómetro baseia-se no prazo de transição para 1 de Janeiro de 2027.</p>
+            <p class="mt-1">Nenhum contabilista foi magoado durante o desenvolvimento deste website.</p>
+        </div>
+    </footer>
+
+    <!-- Script de Funcionamento e Efeitos -->
+    <script>
+        // Data de Destino da extinção: 1 de Janeiro de 2027
+        const targetDate = new Date("2027-01-01T00:00:00").getTime();
+
+        // Elementos do DOM
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+        const tickerEl = document.getElementById("status-ticker");
+        const simResultEl = document.getElementById("sim-result");
+
+        // Atualização da contagem decrescente
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.querySelector("main").innerHTML = `
+                    <div class="text-center p-12 bg-green-950/30 border border-green-800 rounded-3xl max-w-xl mx-auto my-8">
+                        <h2 class="text-5xl font-black text-green-400 mb-4">🎉 ACABOU!</h2>
+                        <p class="text-lg text-gray-300">O PIS e a COFINS foram extintos. Estará o seu sistema de faturação pronto? Provavelmente não, mas celebremos mesmo assim!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Cálculos matemáticos de tempo
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Adiciona zero à esquerda se necessário
+            daysEl.textContent = String(days).padStart(2, '0');
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            secondsEl.textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Frases humorísticas para o Ticker dinâmico
+        const funnyPhrases = [
+            "Contabilistas a chorar em posição fetal debaixo das secretárias...",
+            "Servidores da Receita Federal a fingirem que está tudo bem...",
+            "Equipas de TI a tentarem descobrir como codificar a CBS sem corromper o sistema...",
+            "Advogados tributaristas a planearem as próximas férias com base nas novas dúvidas...",
+            "Calculadoras a atingirem temperaturas perigosas de fusão de silício...",
+            "Doutores em Direito a reescreverem os manuais que publicaram o mês passado...",
+            "O estagiário do setor fiscal a ponderar mudar de carreira para pastorícia de ovelhas...",
+            "Sistemas de ERP a emitirem pequenos sinais de fumo e pânico...",
+            "Guia de recolhimento de impostos a despedir-se das suas famílias..."
+        ];
+
+        // Mudar frase a cada 5 segundos de forma suave
+        let phraseIndex = 0;
+        function rotatePhrases() {
+            tickerEl.style.opacity = 0;
+            setTimeout(() => {
+                phraseIndex = (phraseIndex + 1) % funnyPhrases.length;
+                tickerEl.textContent = funnyPhrases[phraseIndex];
+                tickerEl.style.opacity = 1;
+            }, 500);
+        }
+        setInterval(rotatePhrases, 5000);
+        rotatePhrases(); // Inicializar
+
+        // Simulador de Desespero Tributário
+        const mockResponses = [
+            "O seu contabilista vai precisar de pelo menos 3 cafés pretos extra para processar esta fatura.",
+            "Complexidade estimada: Alta. Recomenda-se acender uma vela ao padroeiro dos impostos.",
+            "Esta fatura gerou 4 novas dúvidas jurídicas que serão resolvidas apenas em 2031.",
+            "O sistema detetou potencial risco de colapso nervoso no departamento financeiro.",
+            "Custo oculto de transição: 200 comprimidos para a dor de cabeça.",
+            "Atenção: Processar esta transação pode atrair olhares desconfiados do algoritmo da Receita."
+        ];
+
+        function calculatePanic() {
+            const val = document.getElementById("invoice-value").value;
+            if (!val || val <= 0) {
+                simResultEl.textContent = "Por favor, introduza um valor válido maior do que zero!";
+                return;
+            }
+            
+            simResultEl.style.opacity = 0;
+            setTimeout(() => {
+                const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+                simResultEl.textContent = `⚡ ${randomResponse}`;
+                simResultEl.style.opacity = 1;
+            }, 200);
+        }
+
+        // Sintetizador de Som Nativo (Web Audio API) para o Botão de Pânico
+        function playSirenSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Criar oscilador de alarme
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime); // Frequência inicial
+                
+                // Efeito de modulação para parecer uma sirene de emergência
+                osc.frequency.linearRampToValueAtTime(880, audioCtx.currentTime + 0.3);
+                osc.frequency.linearRampToValueAtTime(440, audioCtx.currentTime + 0.6);
+                osc.frequency.linearRampToValueAtTime(880, audioCtx.currentTime + 0.9);
+                osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 1.2); // Queda de energia
+                
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.2);
+            } catch (e) {
+                console.log("AudioContext não suportado ou bloqueado pelo navegador.");
+            }
+        }
+
+        // Evento de Pânico
+        function triggerPanic() {
+            // Tocar som divertido de sirene
+            playSirenSound();
+            
+            // Alterar o visual do botão temporariamente
+            const btn = document.getElementById("panic-btn");
+            btn.classList.add("bg-yellow-500", "scale-110", "border-yellow-600");
+            btn.textContent = "🔥";
+            
+            // Alterar temporariamente o ticker de status
+            tickerEl.textContent = "🚨 PERIGO! O sistema de testes de 2026 detetou excesso de ansiedade fiscal!";
+            tickerEl.classList.add("text-red-400", "font-bold");
+
+            setTimeout(() => {
+                btn.classList.remove("bg-yellow-500", "scale-110", "border-yellow-600");
+                btn.textContent = "SOS";
+                tickerEl.classList.remove("text-red-400", "font-bold");
+                rotatePhrases();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva - O Fim do ICMS e ISS</title>
+    <!-- Tailwind CSS para um visual premium e moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+        }
+
+        .digital-font {
+            font-family: 'Share Tech Mono', monospace;
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .pulse-text {
+            animation: pulse-soft 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+    <!-- Cabeçalho -->
+    <header class="container mx-auto px-4 pt-10 pb-4 text-center">
+        <div class="inline-block bg-blue-950/40 border border-blue-800 text-blue-400 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-4 pulse-text">
+            ⚡ Operação Sobrevivência: Destino 2033
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-blue-500 via-indigo-400 to-purple-500 bg-clip-text text-transparent">
+            O Juízo Final do ICMS e ISS
+        </h1>
+        <p class="text-gray-400 mt-3 text-sm md:text-lg max-w-2xl mx-auto">
+            Monitore em tempo real os anos, dias e segundos que faltam para a morte definitiva dos regulamentos estaduais e taxas municipais mais caóticos do planeta.
+        </p>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto px-4 py-6 flex-grow flex flex-col items-center justify-center gap-8">
+        
+        <!-- Bloco do Temporizador -->
+        <div class="w-full max-w-4xl bg-gray-900/60 border border-gray-800 rounded-3xl p-6 md:p-10 neon-border backdrop-blur-md text-center">
+            <h2 class="text-xs uppercase tracking-widest text-gray-400 mb-6 font-semibold">Tempo restante para a unificação total no IBS</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
+                <!-- Dias -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="days" class="block text-4xl md:text-6xl font-bold text-blue-500 digital-font">0000</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Dias</span>
+                </div>
+                <!-- Horas -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="hours" class="block text-4xl md:text-6xl font-bold text-indigo-400 digital-font">00</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Horas</span>
+                </div>
+                <!-- Minutos -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="minutes" class="block text-4xl md:text-6xl font-bold text-purple-400 digital-font">00</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Minutos</span>
+                </div>
+                <!-- Segundos -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 border border-gray-800/80">
+                    <span id="seconds" class="block text-4xl md:text-6xl font-bold text-pink-500 digital-font">00</span>
+                    <span class="text-xs uppercase tracking-wider text-gray-500 mt-2 block">Segundos</span>
+                </div>
+            </div>
+
+            <!-- Ticker de Status Cômico -->
+            <div class="bg-gray-950/40 border border-gray-800/50 rounded-xl p-4 min-h-[64px] flex items-center justify-center">
+                <p id="status-ticker" class="text-sm md:text-base text-gray-300 italic font-medium transition-opacity duration-500">
+                    Analisando a burocracia interestadual...
+                </p>
+            </div>
+        </div>
+
+        <!-- Seção de Interação -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+            
+            <!-- Simulador de Guerra Fiscal -->
+            <div class="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-200 mb-2">⚔️ Simulador de Guerra Fiscal</h3>
+                    <p class="text-xs text-gray-400 mb-4">Escolha a origem e destino da sua mercadoria fictícia e veja o caos de alíquotas do ICMS.</p>
+                    
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                            <label class="block text-[10px] text-gray-500 uppercase font-semibold mb-1">Origem</label>
+                            <select id="state-origem" class="block w-full rounded-xl border border-gray-800 bg-gray-950 py-2.5 px-3 text-sm text-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                                <option value="SP">São Paulo (SP)</option>
+                                <option value="RJ">Rio de Janeiro (RJ)</option>
+                                <option value="MG">Minas Gerais (MG)</option>
+                                <option value="RS">Rio Grande do Sul (RS)</option>
+                                <option value="BA">Bahia (BA)</option>
+                                <option value="AM">Amazonas (ZFM)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-500 uppercase font-semibold mb-1">Destino</label>
+                            <select id="state-destino" class="block w-full rounded-xl border border-gray-800 bg-gray-950 py-2.5 px-3 text-sm text-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                                <option value="RJ">Rio de Janeiro (RJ)</option>
+                                <option value="SP">São Paulo (SP)</option>
+                                <option value="MG">Minas Gerais (MG)</option>
+                                <option value="DF">Distrito Federal (DF)</option>
+                                <option value="GO">Goiás (GO)</option>
+                                <option value="CE">Ceará (CE)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-2 pt-4 border-t border-gray-800/60">
+                    <button onclick="calculateWar()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-2.5 px-4 rounded-xl transition duration-200 text-sm">
+                        Calcular Alíquota Interestadual
+                    </button>
+                    <div id="sim-result" class="mt-3 text-xs text-indigo-300 italic text-center min-h-[32px] flex items-center justify-center"></div>
+                </div>
+            </div>
+
+            <!-- Botão de Pânico / Gerador de Susto -->
+            <div class="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between text-center">
+                <div>
+                    <h3 class="text-lg font-bold text-indigo-400 mb-2">🚨 Botão de Pânico do ISS</h3>
+                    <p class="text-xs text-gray-400 mb-4">Aperte se um fiscal municipal cobrar a taxa de serviços de computação em nuvem retroativa a 2018.</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center my-4">
+                    <button onclick="triggerPanicButton()" id="panic-btn" class="h-20 w-20 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-black rounded-full shadow-lg shadow-blue-900/40 border-4 border-blue-800 flex items-center justify-center transition-all duration-150 text-xl tracking-wider select-none">
+                        FGI
+                    </button>
+                </div>
+                <p class="text-[10px] text-gray-500">FGI = Fuga de Imposto Imediata. Som altamente burocrático ativado!</p>
+            </div>
+            
+        </div>
+
+        <!-- O Legado da Complexidade -->
+        <section class="w-full max-w-4xl bg-gray-900/20 border border-gray-800/50 rounded-2xl p-6 text-sm text-gray-400">
+            <h3 class="text-xs uppercase tracking-wider text-gray-300 font-bold mb-3">📋 Inventário da Complexidade</h3>
+            <ul class="space-y-3">
+                <li class="flex items-start gap-2">
+                    <span class="text-blue-500">🔹</span>
+                    <span><strong>ICMS (Estadual):</strong> Famoso por ter alíquotas diferentes se o produto é uma telha, um perfume importado ou uma bebida quente. Exige domínio absoluto da famigerada "Substituição Tributária" (ST).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-blue-500">🔹</span>
+                    <span><strong>ISS (Municipal):</strong> O terror das startups. Cada prefeitura tem o seu próprio portal emissor de notas fiscais de serviço que vive instável nas segundas-feiras.</span>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-950/80 border-t border-gray-900 py-6 text-center text-xs text-gray-500">
+        <div class="container mx-auto px-4">
+            <p>Este cronômetro aponta para o dia 1 de Janeiro de 2033, fim planejado para a transição do IBS na Emenda Constitucional 132.</p>
+            <p class="mt-1">Nenhum servidor público ou auditor fiscal foi importunado na criação deste temporizador fictício.</p>
+        </div>
+    </footer>
+
+    <!-- Script de Funcionamento -->
+    <script>
+        // Data final da transição: 1 de Janeiro de 2033
+        const targetDate = new Date("2033-01-01T00:00:00").getTime();
+
+        // Elementos do DOM
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+        const tickerEl = document.getElementById("status-ticker");
+        const simResultEl = document.getElementById("sim-result");
+
+        // Atualização do Relógio
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.querySelector("main").innerHTML = `
+                    <div class="text-center p-12 bg-blue-950/30 border border-blue-800 rounded-3xl max-w-xl mx-auto my-8">
+                        <h2 class="text-5xl font-black text-blue-400 mb-4">🕊️ FIM DA ERA ICMS/ISS</h2>
+                        <p class="text-lg text-gray-300">O IBS assumiu o controle total. Descansem em paz, guias de arrecadação estaduais e municipais!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Cálculos
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Interface
+            daysEl.textContent = String(days).padStart(4, '0');
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            secondsEl.textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Frases sarcásticas sobre o ICMS/ISS
+        const funnyPhrases = [
+            "Fiscais estaduais lendo o regulamento do ICMS de 4.000 páginas pela última vez...",
+            "Calculadoras de Substituição Tributária (ST) declarando exaustão mental...",
+            "Prefeitos de cidades do interior preocupados em como cobrar ISS sem site próprio...",
+            "Estagiários tentando entender o DIFAL (Diferencial de Alíquota) antes que ele acabe...",
+            "Sistemas tributários chorando silenciosamente ao processar a partilha de ICMS...",
+            "Consultorias contábeis vendendo os últimos manuais físicos de ICMS por 2 reais...",
+            "Empresas de logística comemorando o fim das barreiras fiscais físicas nas rodovias...",
+            "O mistério do 'Crédito Acumulado' sendo lentamente engolido pela história..."
+        ];
+
+        let phraseIndex = 0;
+        function rotatePhrases() {
+            tickerEl.style.opacity = 0;
+            setTimeout(() => {
+                phraseIndex = (phraseIndex + 1) % funnyPhrases.length;
+                tickerEl.textContent = funnyPhrases[phraseIndex];
+                tickerEl.style.opacity = 1;
+            }, 500);
+        }
+        setInterval(rotatePhrases, 5500);
+        rotatePhrases();
+
+        // Lógica da Guerra Fiscal
+        function calculateWar() {
+            const orig = document.getElementById("state-origem").value;
+            const dest = document.getElementById("state-destino").value;
+
+            if (orig === dest) {
+                simResultEl.innerHTML = "<strong>Operação Interna:</strong> Alíquota padrão estimada em 18%. Sem brigas interestaduais, mas o seu contador ainda vai resmungar.";
+                return;
+            }
+
+            const chaosScenarios = [
+                `De ${orig} para ${dest}: Alíquota interestadual de 7% ou 12%. O remetente precisa recolher o DIFAL enquanto o destinatário reza para a carga não ficar retida no posto fiscal da divisa.`,
+                `Alerta de Guerra Fiscal! O estado de ${orig} oferece incentivo que ${dest} não reconhece. Chance de autuação por glosa de crédito estimada em 97%.`,
+                `Carga de ${orig} para ${dest}. Prepare-se para pagar o imposto antecipado por Guia Especial GNRE antes do caminhão cruzar a fronteira!`,
+                `Substituição Tributária detectada! O remetente de ${orig} precisa adivinhar o MVA (Margem de Valor Agregado) exigido em ${dest}. Boa sorte.`
+            ];
+
+            simResultEl.style.opacity = 0;
+            setTimeout(() => {
+                const randomScenario = chaosScenarios[Math.floor(Math.random() * chaosScenarios.length)];
+                simResultEl.innerHTML = `⚠️ ${randomScenario}`;
+                simResultEl.style.opacity = 1;
+            }, 200);
+        }
+
+        // Sintetizador de áudio para o botão de pânico
+        function playSiren() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'triangle';
+                // Som clássico de sirene alternada
+                const now = audioCtx.currentTime;
+                osc.frequency.setValueAtTime(587.33, now); // D5
+                osc.frequency.setValueAtTime(659.25, now + 0.25); // E5
+                osc.frequency.setValueAtTime(587.33, now + 0.5);
+                osc.frequency.setValueAtTime(659.25, now + 0.75);
+                
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 1.1);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(now + 1.2);
+            } catch (e) {
+                console.log("AudioContext bloqueado.");
+            }
+        }
+
+        function triggerPanicButton() {
+            playSiren();
+            const btn = document.getElementById("panic-btn");
+            btn.classList.add("bg-purple-600", "scale-110", "border-purple-400");
+            btn.textContent = "🏢";
+            
+            tickerEl.textContent = "🚨 ALERTA GERAL: Fiscalização simulada detectada! Apagando histórico do navegador...";
+            tickerEl.classList.add("text-blue-400", "font-bold");
+
+            setTimeout(() => {
+                btn.classList.remove("bg-purple-600", "scale-110", "border-purple-400");
+                btn.textContent = "FGI";
+                tickerEl.classList.remove("text-blue-400", "font-bold");
+                rotatePhrases();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
